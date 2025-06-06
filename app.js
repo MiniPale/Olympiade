@@ -75,4 +75,25 @@ function afficherChoixGagnant(p1, p2, defiNom) {
     <h2>Définir le gagnant</h2>
     <p>Défi : <strong>${defiNom}</strong></p>
     <button onclick="validerDefiManuel('${p1}', '${p2}', '${p1}', '${defiNom}')">${p1} a gagné</button>
-    <button onclick="valide
+    <button onclick="validerDefiManuel('${p1}', '${p2}', '${p2}', '${defiNom}')">${p2} a gagné</button>`;
+}
+
+function validerDefiManuel(p1, p2, gagnant, nomDefi) {
+  const perdant = (gagnant === p1) ? p2 : p1;
+  scores[gagnant] += 3;
+  scores[perdant] -= 3;
+  document.getElementById("zone").innerHTML = `
+    <p><strong>${gagnant}</strong> gagne contre <strong>${perdant}</strong> dans le défi "<strong>${nomDefi}</strong>" (+3 / -3)</p>`;
+  fin();
+}
+
+function fin() {
+    const classement = Object.entries(scores).sort((a,b) => b[1]-a[1]);
+    let html = "<h2>Classement</h2><ol>";
+    classement.forEach(([nom, score], i) => {
+        const badge = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : "";
+        html += `<li>${badge} ${nom} : ${score} pts</li>`;
+    });
+    html += "</ol>";
+    document.getElementById("classement").innerHTML = html;
+}
