@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Olympiade</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #f9f9f9, #e8f0ff);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+            font-size: 16px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #222;
+        }
+        #zone, #classement {
+            max-width: 800px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 30px;
+            width: 95%;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 90%;
+            max-width: 300px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        label {
+            display: block;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        ol {
+            padding-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+<h1>Olympiade</h1>
+<div id="zone"></div>
+<button onclick="lancerEpreuve()">Lancer l’épreuve</button>
+<button id="maj" onclick="fin()">MàJ classement</button>
+<div id="classement"></div>
+
+<script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(() => {
+        console.log("Service Worker enregistré !");
+    });
+}
+</script>
+</body>
+</html>
